@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>登录</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            outline: none;
+        }
+
+        body {
+            background: url(天蓝色.jpg);
+            background-size: 100% 100%;
+            /* background: linear-gradient(45deg, #fbda61, #ff5acd); */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .shell,
+        form {
+            position: relative;
+        }
+
+        .shell {
+            display: flex;
+            justify-content: center;
+        }
+
+        form {
+            width: 562px;
+            height: 520px;
+            background-color: #fff;
+            box-shadow: 0px 15px 40px #ffdce3;
+            border-radius: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(45deg, #ffffff, #ffe7fb);
+        }
+
+        #img-box {
+            width: 330px;
+            height: 520px;
+        }
+
+        #img-box img {
+            height: 100%;
+        }
+
+        #form-body {
+            width: 320px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        #welcome-lines {
+            width: 100%;
+            text-align: center;
+            line-height: 1;
+        }
+
+        #w-line-1 {
+            color: #7f7f7f;
+            font-size: 50px;
+        }
+
+        #w-line-2 {
+            color: #9c9c9c;
+            font-size: 30px;
+            margin-top: 17px;
+        }
+
+        #input-area {
+            width: 100%;
+            margin-top: 40px;
+        }
+
+        .f-inp {
+            padding: 13px 25px;
+            border: 2px solid #6e6d6d;
+            line-height: 1;
+            border-radius: 20px;
+            margin-bottom: 15px;
+        }
+
+        .f-inp input {
+            width: 100%;
+            font-size: 14px;
+            padding: 0;
+            margin: 0;
+            border: 0;
+        }
+
+        .f-inp input::placeholder {
+            color: #b9b9b9;
+        }
+
+        #submit-button-cvr {
+            margin-top: 20px;
+        }
+
+        #submit-button {
+            display: block;
+            width: 100%;
+            color: #fff;
+            font-size: 14px;
+            margin: 0;
+            padding: 14px 40px;
+            border: 0;
+            background-color: #f5506e;
+            border-radius: 25px;
+            line-height: 1;
+            cursor: pointer;
+        }
+
+        #forgot-pass {
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        #forgot-pass a {
+            color: #868686;
+            font-size: 12px;
+            text-decoration: none;
+        }
+
+        span {
+            display: inline-block;
+            width: 250px;
+            height: 15px;
+            vertical-align: middle;
+            line-height: 15px;
+            padding-left: 15px;
+        }
+
+        .error {
+            color: red;
+            background: url(img/error.png) no-repeat left center;
+        }
+
+        .right {
+            color: green;
+            background: url(img/right.png) no-repeat left center;
+        }
+
+        .acte {
+            border-color: red;
+        }
+
+        .actr {
+            border-color: green;
+        }
+
+        small {
+            height: 18px;
+            padding-left: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="shell">
+        <div id="img-box">
+            <img src="R-C.jpg" alt="">
+        </div>
+        <form action="javascript:;" method="post" class="ex">
+            <div id="form-body">
+                <div id="welcome-lines">
+                    <div id="w-line-1">HI</div>
+                    <div id="w-line-2">Welcome Back</div>
+                </div>
+                <from id="input-area">
+                    <div class="f-inp f1">
+                        <input type="text" placeholder="学号" name="stuNum" class="stuNum">
+                        <small class="s1"></small>
+                    </div>
+
+                    <div class="f-inp f2">
+                        <input type="password" placeholder="密码" name="password" class="password">
+                        <small class="s2"></small>
+                    </div>
+                </from>
+                <div id="submit-button-cvr" class="btn">
+                    <input type="button" id="submit-button" class="btn" value="提交">
+                </div>
+                <div id="forgot-pass">
+                    <a href="index(2).html">没有账号?赶紧注册一个吧</a>
+                </div>
+            </div>
+        </form>
+    </div>
+    <script src="lib/form-serialize.js"></script>
+    <script src="lib/jquery-3.6.0.js"></script>
+    <script>
+
+        // 1. 准备正则
+        const reg = /^[0-9]{11}$/
+        const stuNum = document.querySelector('.stuNum')
+        const password = document.querySelector('.password')
+        const s1 = document.querySelector('.s1')
+        const f1 = document.querySelector('.f1')
+        let true1 = 0
+        let true2 = 0
+        stuNum.addEventListener('blur', function () {
+            console.log(reg.test(this.value))
+            if (reg.test(this.value)) {
+                s1.innerHTML = '格式正确'
+                s1.className = 'right'
+                f1.classList.remove('acte')
+                f1.classList.add('actr')
+                true1 = 1
+            } else {
+                s1.innerHTML = '请输入11位的数字'
+                s1.className = 'error'
+                f1.classList.remove('actr')
+                f1.classList.add('acte')
+                true1 = 0
+            }
+        })
+        // 2. password
+        const reg2 = /^[a-zA-Z0-9]{8,16}$/
+        const s2 = document.querySelector('.s2')
+        const f2 = document.querySelector('.f2')
+        password.addEventListener('blur', function () {
+            console.log(reg2.test(this.value))
+            if (reg2.test(this.value)) {
+                s2.innerHTML = '格式正确'
+                s2.className = 'right'
+                f2.classList.remove('acte')
+                f2.classList.add('actr')
+                true2 = 1
+
+            } else {
+                s2.innerHTML = '请输入8-16位的字母或数字'
+                s2.className = 'error'
+                f2.classList.remove('actr')
+                f2.classList.add('acte')
+                true2 = 0
+            }
+        })
+        const ex = document.querySelector('.ex')
+        const btn = document.querySelector('.btn')
+        var btnr = btn.addEventListener('click', () => {
+            const form = document.querySelector('.login-form')
+            const data = serialize(ex, { hash: true, empty: true })
+            console.log(data)
+            const { stuNum, password } = data
+            const reg = /^[0-9]{11}$/
+            const reg2 = /^[a-zA-Z0-9]{8,16}$/
+            console.log(stuNum, password)
+
+            if (true1 == 1) {
+                if (true2 == 1) {
+                    $.ajax({
+                        url: 'https://api.liuxinghao.top/user/login',
+                        type: 'post',
+                        async: false,
+                        dataType: "json",
+                        data: {
+                            stuNum,
+                            password
+                        }
+                    }).then(res => {
+                        console.log(res);
+                        let msg = res.msg;
+                        alert(msg);
+                        if (msg == "登陆成功") {
+                            console.log('666');
+                            window.location.href = '管理.html'
+                        } else {
+                            console.log('222');
+                        }
+                    })
+                    console.log(true2);
+                } else {
+                    alert('密码格式错误')
+                }
+                console.log(true1);
+            } else {
+                alert('学号格式错误')
+            }
+
+        })
+
+
+
+        // $.ajax({
+        //     url: 'http://hmajax.itheima.net/api/login',
+        //     method: 'POST',
+        //     data: {
+        //         username,
+        //         password
+        //     }
+        // }).then(result => {
+        //     alertFn(result.data.message, true)
+        //     console.log(result)
+        //     console.log(result.data.message)
+        // }).catch(error => {
+        //     alertFn(error.response.data.message, false)
+        //     console.log(error)
+        //     console.log(error.response.data.message)
+        // })
+        // "stuNum": 22125021024,
+        // "password": "1234abcd"
+        // $.ajax({
+        //     url: 'https://api.liuxinghao.top/user/login',
+        //     type: 'post',
+        //     async: false,
+        //     dataType: "json",
+        //     data: {
+        //         stuNum,
+        //         password
+
+        //     }
+        // }).then(res => {
+        //     console.log(res);
+        //     alert(res.msg)
+        // })
+        $.ajax({
+            url: 'https://api.liuxinghao.top/user/findAll',
+            type: 'get',
+            async: false,
+            dataType: "json",
+            contextType: "application/json"
+        }).then(res => {
+            console.log(res.data);
+
+        })
+    </script>
+</body>
+
+</html>
