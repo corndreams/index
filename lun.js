@@ -69,18 +69,21 @@ for (let i = 0; i < m.length; i++) {
         // timer()
     })
 }
-// timer()
+timer()
 
-shell.addEventListener('mouseenter', function () {
-    clearInterval(time)
-})
+// shell.addEventListener('mouseenter', function () {
+//     clearInterval(time)
+// })
 
-shell.addEventListener('mouseleave', function timer() {
-    time = setInterval(() => {
-        index++
-        desc()
-        add()
-        position()
-        console.log('1');
-    }, 3000)
-})
+// shell.addEventListener('mouseleave', function timer() {
+//     time = setInterval(() => {
+//         index++
+//         desc()
+//         add()
+//         position()
+//     }, 3000)
+// })
+index++
+desc()
+add()
+position()
