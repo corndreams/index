@@ -1,0 +1,362 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+    <!-- 必须的 meta 标签 -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap 的 CSS 文件 -->
+    <!-- <link rel="stylesheet" href="bootstrap-3.4.1-dist/bootstrap-3.4.1-dist/css/bootstrap.css">
+    <link rel="stylesheet" href="top.css"> -->
+    <!-- <link rel="stylesheet" href="style.css"> -->
+    <!-- <link rel="stylesheet" href="pic.css">
+    <link rel="stylesheet" href="tab.css">
+    <link rel="stylesheet" href="c6.css"> -->
+    <link rel="stylesheet" href="css/lunbot.css">
+    <!-- <link rel="stylesheet" href="new.css">
+    <link rel="stylesheet" href="xiang.css"> -->
+    <link rel="stylesheet" href="css/s.css">
+
+    <title>index</title>
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+        .colorful {
+            background-image: linear-gradient(to right, red, orange, yellow, green, blue, green, yellow, orange, red, orange, yellow, green, blue, green, yellow, orange, red);
+            -webkit-text-fill-color: transparent;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-background-size: 200% 100%;
+            background-size: 200% 100%;
+            animation: bgp 5s infinite linear;
+        }
+
+        @keyframes bgp {
+            0% {
+                background-position: 0 0;
+            }
+
+            100% {
+                background-position: -100% 0;
+            }
+        }
+
+        .yx {
+            width: 100%;
+            height: 100vh;
+            background-color: rgb(85, 85, 85, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: fixed;
+            z-index: 9999;
+            display: none;
+        }
+
+        .zf {
+            width: 100%;
+            height: 100vh;
+            background-color: rgb(85, 85, 85, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: fixed;
+            z-index: 9999;
+            display: none;
+        }
+
+        .yxl {
+            width: 370px;
+            height: 400px;
+            background-color: #fbd5ff;
+        }
+
+        .zfl {
+            width: 370px;
+            height: 400px;
+            background-color: #fbd5ff;
+        }
+
+        .w-lyx {
+            width: 130px;
+            padding: 5px 10px;
+            margin: auto;
+            border: 4px solid rgba(203, 132, 200, 0.5);
+            border-radius: 25px;
+            font-size: 25px;
+            background-color: rgba(248, 199, 246, 0.9);
+            cursor: pointer;
+            align-items: center;
+            text-align: center;
+        }
+
+        .br {
+            margin-top: 20px;
+        }
+
+        .btn-yx {
+            width: 40px;
+            height: 40px;
+            font-size: 30px;
+            float: right;
+            border-color: beige;
+        }
+
+        .btn-zf {
+            width: 40px;
+            height: 40px;
+            font-size: 30px;
+            float: right;
+            border-color: beige;
+        }
+
+        /* 日志 */
+        .rz {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: url(img/rizhi.webp);
+            background-size: 100%, 100%;
+            position: fixed;
+            right: 5%;
+            bottom: 40px;
+            cursor: pointer;
+            z-index: 9999;
+        }
+
+        .rizhi {
+            width: 100%;
+            height: 100vh;
+            background-color: rgb(85, 85, 85, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: fixed;
+            z-index: 9999;
+            display: none;
+        }
+
+        .rizhil {
+            width: 385px;
+            height: 460px;
+            background-color: #000000;
+        }
+
+        .rizhil p {
+            color: #fff;
+            text-indent: 1em;
+        }
+
+        /* 日历 */
+        .rl {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: url(img/rl.jpg);
+            background-size: 100%, 100%;
+            position: fixed;
+            right: 5%;
+            bottom: 120px;
+            z-index: 9999;
+            cursor: pointer;
+        }
+
+        .rili {
+            width: 100%;
+            height: 100vh;
+            background-color: rgb(85, 85, 85, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: fixed;
+            z-index: 9999;
+            display: none;
+        }
+
+        .rili iframe {
+            width: 383px;
+            height: 332px;
+        }
+
+        .p {
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            z-index: 99999;
+        }
+    </style>
+</head>
+
+<body class="container">
+    <iframe src="welcome.html" frameborder="0" class="p"></iframe>
+    <div class="zf">
+        <div class="zfl">
+            <button class="btn-zf">x</button>
+            <div class="w-lyx br" href=""><a href="newyear.html" class="ww">新年快乐</a></div>
+            <div class="w-lyx br" href=""><a href="birthday/index.html" class="ww">birthday</a></div>
+        </div>
+    </div>
+    <div class="yx">
+        <div class="yxl">
+            <button class="btn-yx">x</button>
+            <div class="w-lyx br" href=""><a href="贪吃蛇.html" class="ww">贪吃蛇</a></div>
+            <div class="w-lyx br" href=""><a href="小恐龙.html" class="ww">小恐龙</a></div>
+        </div>
+    </div>
+    <div class="rizhi">
+        <div class="rizhil">
+            <p>建站并上传新年快乐.html(2023.12.31)</p>
+            <p>上传主页...(2024.1.2)</p>
+            <p>......忘了</p>
+            <p>新增小恐龙游戏(2024.1.19)</p>
+            <p>新增日志,日历(2024.1.27)</p>
+            <p>新增火柴人动画(2024.1.27)</p>
+            <p>火柴人改为小恐龙，新增生日快乐(2024.1.30)</p>
+            <p>修复和优化了部分问题(1.31:音乐盒子 贪吃蛇,2.2:小恐龙游戏)</p>
+        </div>
+    </div>
+    <div class="rili">
+        <iframe src="日历.html" frameborder="0"></iframe>
+    </div>
+    <div class="rz"></div>
+    <div class="rl"></div>
+    <div class="container">
+        <div class="top">
+            <div class="iocn"></div>
+            <div class="top-b">个人介绍</div>
+            <div class="l1">
+                <div class="top-b myhtml">我的网页</div>
+                <ul class="list1 none">
+                    <li><a href="newyear.html" class="la">新年快乐</a></li>
+                    <li><a href="birthday/index.html" class="la">生日快乐</a></li>
+                    <li><a href="计算器.html" class="la">在线计算器</a></li>
+                    <li><a href="贪吃蛇.html" class="la">贪吃蛇</a></li>
+                    <li><a href="小恐龙.html" class="la">小恐龙</a></li>
+                    <li><a href="环创项目1/22.html" class="la">环创项目1</a></li>
+                    <li><a href="2/index.html" class="la">环创项目2</a></li>
+                </ul>
+            </div>
+            <div class="top-b">支持我</div>
+            <div class="top-bx"></div>
+
+        </div>
+        <div class="tbx">
+            <div class="text-a">音乐盒子</div>
+            <div class="bf"></div>
+            <!-- <audio src="http://music.163.com/song/media/outer/url?id=32717172.mp3" loop class="audio"></audio> -->
+            <audio
+                src="https://dl.stream.qqmusic.qq.com/M800003KzdkL0QAtuH.mp3?fromtag=470&guid=music_33z3_com&trace=332b93466335a72e&uin=0&vkey=FF64FF4085801FE5CA6E12A1F43CC358B7A2905E913D4419906DC006B6E8A486AC4900DD9F2AE8867C1BC224CD1F69A7090E171361AA1AB0"
+                loop class="audio"></audio>
+            <audio
+                src="https://dl.stream.qqmusic.qq.com/M5000017bcwt38GHZ5.mp3?fromtag=470&guid=music_33z3_com&src=M500002WGuTM2iX22o.mp3&trace=7ebb3a3a13c3cb7e&uin=0&vkey=9894FA0E8A1534B1EDEDCD312426523142051035C3AAF6E12CD3D06C4C1AB9856672D224973BA0F7A2E4577B02E98A84548BF533232B500A"
+                loop class="audio"></audio>
+            <audio
+                src="https://dl.stream.qqmusic.qq.com/M80000400jk23JDWwJ.mp3?fromtag=470&guid=music_33z3_com&trace=55af2b161dc6b8c1&uin=0&vkey=A56168049F6DB509D51A3C2F311FE699944D2D22181D9953C8642F6C054F28CC976B6B78DF72D27055A7F7055287618D2FE2A3718A98DAC5"
+                loop class="audio"></audio>
+            <audio src="http://music.163.com/song/media/outer/url?id=2044458035.mp3" loop class="audio"></audio>
+            <audio src="http://music.163.com/song/media/outer/url?id=1458349486.mp3" loop class="audio"></audio>
+            <audio src="http://music.163.com/song/media/outer/url?id=1436685819.mp3" loop class="audio"></audio>
+            <!-- <audio src="http://music.163.com/song/media/outer/url?id=1407540299.mp3" loop class="audio"></audio> -->
+            <div class="hl1 hl">上一首</div>
+            <div class="hl2 hl">下一首</div>
+        </div>
+        <div></div>
+    </div>
+    <div class="ttop">
+        <div class="tt-n colorful">持续更新中...</div>
+        <div class="tt-n2">
+            <div class="n2">&#129326;我改好的项目1没了😭</div>
+        </div>
+    </div>
+    <!-- 轮播图 -->
+    <div class="shell container col-sm-12 col-xs-12">
+        <div class="images">
+            <img src="img/1.jpg" alt="">
+            <img src="img/2.jpg" alt="">
+            <img src="img/3.png" alt="">
+            <img src="img/4.jpg" alt="">
+            <img src="img/5.jpg" alt="">
+        </div>
+        <ul class="min">
+            <li class="m ac"></li>
+            <li class="m"></li>
+            <li class="m"></li>
+            <li class="m"></li>
+            <li class="m"></li>
+        </ul>
+        <div class="button">
+            <div class="button-left">
+                <div class="bx">
+                    < </div>
+                </div>
+                <div class="button-right">
+                    <div class="bx">></div>
+                </div>
+            </div>
+        </div>
+        <div class="bg"></div>
+    </div>
+    <!-- web -->
+    <!-- picture -->
+    <div class="myweb">
+        <div class="w-tx">我的网页</div>
+        <div class="wl">
+            <div class="pic" id="a1">
+                <div>
+                    <div class="w-text">祝福</div>
+                    <div class="w-l" href=""><span class="ww azf">learn more</span></div>
+                </div>
+            </div>
+            <div class="pic" id="a2">
+                <div>
+                    <div class="w-text">在线计算器</div>
+                    <div class="w-l" href=""><a href="计算器.html" class="ww">learn more</a></div>
+                </div>
+            </div>
+            <div class="pic" id="a3">
+                <div>
+                    <div class="w-text">小游戏</div>
+                    <div class="w-l" href=""><span class="ayx ww">learn more</span></div>
+                </div>
+            </div>
+            <div class="pic" id="a4">
+                <div>
+                    <div class="w-text">环创项目1</div>
+                    <div class="w-l" href=""><a href="环创项目1/22.html" class="ww">learn more</a></div>
+                </div>
+            </div>
+            <div class="pic" id="a5">
+                <div>
+                    <div class="w-text">环创项目2</div>
+                    <div class="w-l" href=""><a href="2/index.html" class="ww">learn more</a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="line"></div>
+    <div class="view_port last">
+        <div class="polling_message last-text">支持作者</div>
+        <!-- <div class="polling_message last-text">新增小恐龙游戏(2024.1.19)</div> -->
+        <div class="cylon_eye"></div>
+    </div>
+    </div>
+
+
+    <script src="js/t.js"></script>
+    <script src="js/lun.js"></script>
+
+
+    <script>
+        p = document.querySelector('.p')
+        var t = setTimeout(function () {
+            p.style.display = 'none'
+        }, 4000);
+    </script>
+
+</body>
+
+
+</html>
