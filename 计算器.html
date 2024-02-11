@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="ch">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>计算器</title>
+  <style>
+    body,
+    div,
+    span {
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      /* background: url(天蓝色.jpg);
+      background-size: 100% 100%; */
+      background: linear-gradient(45deg, #fbda61, #ff5acd);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .shell {
+      width: 440px;
+      height: 600px;
+      background-color: #dcdcdc;
+      position: relative;
+      box-shadow: 0px 15px 40px #ffdce3;
+      /* display: flex;
+      justify-content: center; */
+    }
+
+    .tit {
+      height: 40px;
+      line-height: 40px;
+      padding-left: 5px;
+      font-size: 18px;
+      border-bottom: 1px solid rgb(161, 161, 161);
+    }
+
+    .btn-jz {
+      float: right;
+      height: 30px;
+      line-height: 30px;
+      padding-right: 5px;
+      font-size: 18px;
+      background-color: #d4d4d4;
+      border: 1px solid rgba(165, 165, 165, 0.715);
+      margin: 5px;
+    }
+
+    .in {
+      width: 90%;
+      margin-left: 5%;
+      margin-top: 25px;
+      background-color: #333333;
+      height: 70px;
+      font-size: 28px;
+      font-weight: 700;
+      line-height: 70px;
+      margin-bottom: 20px;
+      color: #ffffff;
+    }
+
+    .on {
+      display: table;
+      border-top: 1px solid #adadad;
+      width: 100%;
+    }
+
+    th {
+      /* text-align: center; */
+      height: 45px;
+      line-height: 45px;
+      background-color: #bfbfbf;
+      cursor: pointer;
+      /* border: 1px solid rgb(128, 128, 128); */
+    }
+
+    /* th:hover {
+      background-color: #eaeaea;
+    } */
+
+    th:active {
+      background-color: #ededed;
+    }
+
+    .new {
+      width: 90%;
+      height: 400px;
+      margin: auto;
+      background-color: #fff;
+      display: none;
+    }
+
+    input {
+      width: 80%;
+      height: 30px;
+      margin: auto;
+      margin-top: 30px;
+      margin-left: 5px;
+    }
+
+    .btn-zh {
+      height: 35px;
+      width: 50px;
+      margin-left: 5px;
+    }
+
+    .sr {
+      width: 340px;
+      height: 24px;
+      margin: auto;
+      margin-top: 30px;
+      background-color: #d9ffd6;
+      padding: 5px;
+    }
+
+    .s {
+      width: 60px;
+      height: 24px;
+      font-size: 16px;
+      line-height: 24px;
+      background-color: #ffdcdc;
+      float: right;
+      margin-left: 10px;
+      text-align: center;
+    }
+
+    .angle {
+      width: 340px;
+      height: 24px;
+      margin: auto;
+      margin-top: 30px;
+      background-color: #fdd2ff;
+      padding: 5px;
+    }
+
+    .cc {
+      background-color: #fea5ff;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="shell">
+    <div class="tit">计算器<button class="btn-jz">进制转换</button></div>
+    <div class="in">0</div>
+    <table class="on" cellpadding="15" cellspacing="0">
+      <tr>
+        <th id="bai">%</th>
+        <th id="gen">根号</th>
+        <th id="fan">x`2</th>
+        <th id="dao">1/x</th>
+      </tr>
+      <tr>
+        <th class="jx">CE</th>
+        <th class="jx">C</th>
+        <th id="back">Back</th>
+        <th class="jx">÷</th>
+      </tr>
+      <tr>
+        <th class="j">7</th>
+        <th class="j">8</th>
+        <th class="j">9</th>
+        <th class="jx">x</th>
+      </tr>
+      <tr>
+        <th class="j">4</th>
+        <th class="j">5</th>
+        <th class="j">6</th>
+        <th class="jx">-</th>
+      </tr>
+      <tr>
+        <th class="j" id="b1">1</th>
+        <th class="j" id="b2">2</th>
+        <th class="j" id="b3">3</th>
+        <th class="jx">+</th>
+      </tr>
+      <tr>
+        <th id="zf">+/-</th>
+        <th class="j">0</th>
+        <th class="j">.</th>
+        <th class="" id="deng">=</th>
+      </tr>
+    </table>
+    <div class="new">
+      <input type="text"><button class="btn-zh">转换</button>
+      <div class="sr">输入:
+        <div class="s">16进制</div>
+        <div class="s cc">10进制</div>
+        <div class="s">8进制</div>
+        <div class="s">2进制</div>
+      </div>
+      <div class="sr">输出:
+        <div class="s c">16进制</div>
+        <div class="s c">10进制</div>
+        <div class="s c">8进制</div>
+        <div class="s c">2进制</div>
+      </div>
+      <div class="angle">结果: &nbsp;&nbsp;<span class="e"></span></div>
+    </div>
+    <script>
+      const j = document.querySelectorAll('.j')
+      const jx = document.querySelectorAll('.jx')
+      const on = document.querySelector('.on')
+      const content = document.querySelector('.in')
+      const deng = document.querySelector('#deng')
+      const back = document.querySelector('#back')
+      const zf = document.querySelector('#zf')
+      const bai = document.querySelector('#bai')
+      const gen = document.querySelector('#gen')
+      const fan = document.querySelector('#fan')
+      const dao = document.querySelector('#dao')
+
+      let hao = localStorage.getItem('hao')
+      let n1 = localStorage.getItem('n1')
+      for (let i = 0; i < j.length; i++) {
+        j[i].addEventListener('click', function () {
+          if (content.innerHTML === '0' && i != 10) {
+            content.innerHTML = this.innerHTML
+          } else {
+            content.innerHTML = content.innerHTML + this.innerHTML
+          }
+        })
+      }
+      for (let i = 0; i < jx.length; i++) {
+        jx[i].addEventListener('click', function () {
+          localStorage.setItem('n1', content.innerHTML)
+          localStorage.setItem('hao', this.innerHTML)
+          hao = localStorage.getItem('hao')
+          content.innerHTML = '0'
+          n1 = localStorage.getItem('n1')
+          // console.log(n1);
+        })
+      }
+      deng.addEventListener('click', function () {
+        let n2 = content.innerHTML
+        if (hao == '+') {
+          let d = Number(n1) + Number(n2)
+          content.innerHTML = d
+          // console.log(n1);
+          // console.log(n2);
+          // console.log(d);
+          localStorage.clear()
+        } else if (hao == '-') {
+          let d = Number(n1) - Number(n2)
+          content.innerHTML = d
+          localStorage.clear()
+        }
+        else if (hao == 'x') {
+          let d = Number(n1) * Number(n2)
+          content.innerHTML = d
+          localStorage.clear()
+        }
+        else if (hao == '÷') {
+          let d = Number(n1) / Number(n2)
+          content.innerHTML = d
+          localStorage.clear()
+        }
+        // else if (hao == 'Back') {
+        //   d= content.innerHTML.slice(0,-1)
+        //   content.innerHTML = d
+        //   localStorage.clear()
+        // }
+      })
+      back.addEventListener('click', function () {
+        content.innerHTML = content.innerHTML.slice(0, -1)
+        if (content.innerHTML == '') {
+          content.innerHTML = 0
+        }
+      })
+      zf.addEventListener('click', function () {
+        if (content.innerHTML.charAt(0) == '-') {
+          content.innerHTML = content.innerHTML.slice(1)
+        } else {
+          content.innerHTML = '-' + content.innerHTML
+        }
+      })
+      bai.addEventListener('click', function () {
+        content.innerHTML = Number(content.innerHTML) * 0.01
+      })
+      gen.addEventListener('click', function () {
+        content.innerHTML = Math.sqrt(Number(content.innerHTML))
+      })
+      fan.addEventListener('click', function () {
+        content.innerHTML = Number(content.innerHTML) * Number(content.innerHTML)
+      })
+      dao.addEventListener('click', function () {
+        content.innerHTML = 1 / Number(content.innerHTML)
+      })
+      // jz
+      const jz = document.querySelector('.btn-jz')
+      const newjz = document.querySelector('.new')
+      let jzclick = 0
+      jz.addEventListener('click', function () {
+        jzclick++
+        if (jzclick % 2 == 1) {
+          on.style.display = 'none'
+          newjz.style.display = 'block'
+        } else {
+          on.style.display = 'table'
+          newjz.style.display = 'none'
+        }
+      })
+      // 获取
+      const input = document.querySelector('input')
+      const zh = document.querySelector('.btn-zh')
+      const c = document.querySelectorAll('.c')
+      const e = document.querySelector('.e')
+      let start = 0
+      let end = null
+      let cc = -1
+      for (let i = 0; i < c.length; i++) {
+        c[i].addEventListener('click', function () {
+          cc = i
+          console.log(i);
+          fc()
+          c[i].classList.add("cc");
+        })
+      }
+      function fc() {
+        for (let v = 0; v < c.length; v++) {
+          c[v].classList.remove('cc');
+        }
+      }
+      zh.addEventListener('click', function () {
+        if (cc >= 0) {
+          start = input.value
+          if (start == '') {
+            alert('请输入')
+          } else {
+            start = Number(start)
+            console.log(start);
+            switch (cc) {
+              case 0:
+                end = start.toString(16);
+                console.log(end);
+                e.innerHTML = end
+                break;
+              case 1:
+                end = start.toString(10);
+                console.log(end);
+                e.innerHTML = end
+                break;
+              case 2:
+                end = start.toString(8);
+                console.log(end);
+                e.innerHTML = end
+                break;
+              case 3:
+                end = start.toString(2);
+                console.log(end);
+                e.innerHTML = end
+                break;
+              default:
+                break;
+            }
+          }
+        }
+      })
+    </script>
+</body>
+
+</html>
