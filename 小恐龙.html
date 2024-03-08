@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="ch">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script>
+    alert('电脑游戏，空格跳')
+  </script>
+  <style>
+    body {
+      /* padding: 20px; */
+      padding: 0;
+      margin: 0;
+      background-color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .game {
+      width: 600px;
+      height: 300px;
+      border: 1px solid black;
+      position: relative;
+    }
+
+    .sha {
+      background: url(img/sha.jpg);
+      background-size: 100% 100%;
+      background-position: 0px;
+    }
+
+    .dino {
+      width: 80px;
+      height: 100px;
+      background-color: green;
+      background: url(img/long.webp);
+      background-size: 100% 100%;
+      position: absolute;
+      left: 30px;
+      bottom: 0px;
+    }
+
+    .jumpClass {
+      animation: jump 0.7s linear;
+    }
+
+    @keyframes jump {
+      0% {
+        bottom: 0px;
+      }
+
+      20% {
+        bottom: 60px;
+      }
+
+      35% {
+        bottom: 120px;
+      }
+
+      65% {
+        bottom: 120px;
+      }
+
+      80% {
+        bottom: 60px;
+      }
+
+      100% {
+        bottom: 0px;
+      }
+    }
+
+    .block {
+      background-color: blue;
+      width: 40px;
+      height: 60px;
+      position: absolute;
+      bottom: 0px;
+      left: 580px;
+      background: url(img/xian.webp);
+      background-size: 100% 100%;
+    }
+
+    .active {
+      animation: block 1.8s linear infinite;
+    }
+
+    .qiu {
+      width: 80px;
+      height: 80px;
+      background: url(img/qiu.webp);
+      background-size: 100% 100%;
+    }
+
+    @keyframes block {
+      0% {
+        left: 580px;
+      }
+
+      100% {
+        left: -20px;
+      }
+    }
+
+    .t {
+      width: 60px;
+      height: 60px;
+      background-color: #ffc0c0;
+      font-size: 20px;
+      line-height: 60px;
+      text-align: center;
+    }
+
+    .c {
+      width: 60px;
+      height: 60px;
+      background-color: #ffc0c0;
+      font-size: 40px;
+      line-height: 60px;
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+  <audio src="background_music.mp3" loop autoplay id="audio"></audio>
+  <div class="game sha">
+    <div class="t">开始</div>
+    <div class="dino"></div>
+    <div class="block"></div>
+  </div>
+</body>
+<script>
+  const audio = document.querySelector('audio')
+  const game = document.querySelector('.game')
+  const dino = document.querySelector('.dino');
+  const block = document.querySelector('.block');
+  const t = document.querySelector('.t');
+  let time = 0
+  let x = 30
+  let d = 0
+  let tt = 0
+  let timel = null
+  let timed = null
+  let timex = null
+  let timej = null
+
+  // 跳
+  window.addEventListener('keydown', event => {
+    console.log(event);
+    if (event.code == 'Space') {
+      console.log('按下空格');
+      dino.classList.add('jumpClass');
+      setTimeout(() => {
+        dino.classList.remove('jumpClass');
+      }, 700);
+    }
+  });
+
+  var color = ['#f00', 'rgb(210, 210, 0)', 'blue', 'gold', 'orange', 'gray', 'pink', 'maroon', 'green', 'rgb(42, 75, 165)', '#009393', '#24f024', '#b7b7ff', 'purple'];
+  setInterval(function () {
+    var math = Math.floor(Math.random() * color.length);
+    //  var math = Math.floor(Math.random() * color.length +1)-1; 
+    t.style.color = color[math];
+  }, 1000)
+  t.addEventListener('click', function () {
+    if (t.innerHTML == '开始') {
+      audio.pause()
+      // 倒计时
+      t.classList.add('c')
+      t.innerHTML = '3'
+      setTimeout(function () {
+        t.innerHTML = '2'
+      }, 1000);
+      setTimeout(function () {
+        t.innerHTML = '1'
+      }, 2000);
+      setTimeout(function () {
+        t.innerHTML = 'go'
+        audio.volume = 0.7
+        audio.currentTime = 0
+      }, 3000);
+      // 游戏结束判断
+      setTimeout(function () {
+        audio.play()
+        t.style.display = 'none'
+        block.classList.add('active')
+        block.style.animationPlayState = ''
+        timel = setInterval(function () {
+          x++
+          dino.style.left = x + "px"
+          if (x >= 400) {
+            end()
+            alert('游戏胜利!!!')
+          }
+        }, 100);
+        timed = setInterval(function () {
+          d++
+          game.style.backgroundPosition = -d + 'px'
+        }, 30);
+        timex = setInterval(function () {
+          if (time == 0) {
+            let timex = setInterval(() => {
+              let dinoBottom = parseFloat(
+                getComputedStyle(dino).getPropertyValue('bottom')
+              );
+              let blockLeft = parseFloat(
+                getComputedStyle(block).getPropertyValue('left')
+              );
+              if (blockLeft < 58 + x && blockLeft > x - 30 && dinoBottom <= 55) {
+                alert('游戏结束');
+                end()
+              }
+            }, 10);
+          } else if (time == 1) {
+            setInterval(() => {
+              let dinoBottom = parseFloat(
+                getComputedStyle(dino).getPropertyValue('bottom')
+              );
+              let blockLeft = parseFloat(
+                getComputedStyle(block).getPropertyValue('left')
+              );
+              if (blockLeft < 60 + x && blockLeft > x - 30 && dinoBottom <= 56) {
+                alert('游戏结束');
+                end()
+              }
+            }, 10);
+          }
+        }, 10);
+      }, 3200);
+
+      // 换背景
+      timej = setTimeout(function () {
+        game.style.background = "url('img/xue1.jpg')";
+        // block.classList.remove("sha");
+        block.classList.add("qiu");
+        time = 1
+        return (time)
+      }, 19400);
+    }
+    // 结束函数
+    let end = function () {
+      t.style.display = 'block';
+      t.classList.remove('c')
+      t.innerHTML = '开始'
+      audio.currentTime = 0
+      audio.pause()
+      clearTimeout(timej);
+      clearInterval(timel);
+      clearInterval(timed);
+      clearInterval(timex);
+      timel = null
+      timed = null
+      timex = null
+      timej = null
+      x = 30
+      d = 0
+      dino.style.left = x + "px"
+      game.style.backgroundPosition = 0 + 'px'
+      block.classList.remove('active')
+      block.style.left = 580 + 'px'
+      block.classList.remove("qiu");
+      game.style.background = "url('img/sha.jpg')";
+    }
+  })
+
+
+</script>
+
+</html>
