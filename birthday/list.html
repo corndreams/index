@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body {
+      background: url(../2/天蓝色.jpg);
+      background-size: 100% 100%;
+      /* background: linear-gradient(45deg, #fbda61, #ff5acd); */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .app {
+      width: 358px;
+      height: 1400px;
+      /* background-color: #fff0f0; */
+      border-radius: 20px;
+      box-shadow: 0px 15px 40px #ffdce3;
+      border-radius: 15px;
+      /* background: linear-gradient(45deg, #faffd1, #ffe7fb); */
+      background: url(./img/11.jpg);
+      background-size: 100% 100%;
+    }
+
+    h2 {
+      text-align: center;
+    }
+
+    table {
+      width: 348px;
+      margin: auto;
+      margin-top: 8px;
+    }
+
+    td {
+      width: 50%;
+      font-size: 20px;
+      text-indent: 6px;
+      border: 2px solid rgb(87, 77, 219);
+    }
+
+    span {
+      position: relative;
+      text-decoration: none;
+      left: 30px;
+      font-size: 18px;
+    }
+
+    .dateText {
+      position: relative;
+      top: -4px;
+      left: 175px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="app">
+    <h2>Friend'sbirthday lists
+      <select class="sel">
+        <option>环创工作室</option>
+        <option>其他</option>
+      </select>
+    </h2>
+    <span class="dateText">2024/01/01 00:00:00</span>
+    <table class="context"></table>
+  </div>
+  <script src="js/jquery-2.1.1.min.js" type="text/javascript"></script>
+  <!-- <script src="js/jquery-1.8.4.min.js" type="text/javascript"></script> -->
+  <script>
+    function pad(content, count, padStr) {
+      count = count || 2
+      padStr = padStr || '0'
+      content = String(content)
+      return content.padStart(count, padStr)
+    }
+    // 日期
+    const dateText = document.querySelector('.dateText')
+    let date = new Date()
+    let year = date.getFullYear()
+    let month = date.getMonth() + 1
+    let day = pad(date.getDate())
+    let hour = pad(date.getHours())
+    let minute = pad(date.getMinutes())
+    let second = pad(date.getSeconds())
+    dateText.innerHTML = `${year}/${month}/${day} &nbsp${hour}:${minute}:${second}`
+    setInterval(() => {
+      let date = new Date()
+      let year = date.getFullYear()
+      let month = date.getMonth() + 1
+      let day = pad(date.getDate())
+      let hour = pad(date.getHours())
+      let minute = pad(date.getMinutes())
+      let second = pad(date.getSeconds())
+      dateText.innerHTML = `${year}/${month}/${day} &nbsp${hour}:${minute}:${second}`
+    }, 1000);
+
+    const credentials = [
+      //工作室
+      { username: '黄贤轩', password: '0824', label: '环创工作室' },
+      { username: '苏瑞华', password: '0830', label: '环创工作室' },
+      { username: '郑心敏', password: '0410', label: '环创工作室' },//农历
+      { username: '郭鉴文', password: '0827', label: '环创工作室' },//24年是27号，身份证上是28号，她过农历
+      { username: '潘佳伟', password: '0127', label: '环创工作室' },
+      { username: '黄培峻', password: '0403', label: '环创工作室' },
+      { username: '张树涛', password: '0525', label: '环创工作室' },
+      { username: '赖吉勇', password: '0114', label: '环创工作室' },
+      { username: '林思琪', password: '0929', label: '环创工作室' },
+      { username: '巫心如', password: '0811', label: '环创工作室' },
+      { username: '宋俊奇', password: '0816', label: '环创工作室' },
+      { username: '农云婷', password: '0815', label: '环创工作室' },
+      { username: '陈晓琳', password: '0928', label: '环创工作室' },
+      { username: '方雪儿', password: '1011', label: '环创工作室' },
+      { username: '许泽涵', password: '0903', label: '环创工作室' },
+      { username: '何滨', password: '0621', label: '环创工作室' },
+      { username: '黄桂清', password: '0609', label: '环创工作室' },
+      { username: '吴小红', password: '0518', label: '环创工作室' },
+      // { username: '', password: '' },
+      // { username: '', password: '' },
+      // { username: '', password: '' },
+      // { username: '', password: '' },
+      // { username: '', password: '' },
+      { username: '聂珏米', password: '0620', label: '其他' },
+      { username: '朱溢', password: '052?', label: '其他' },
+      { username: '黄雅慧', password: '0227', label: '其他' },
+      { username: '师父', password: '0619', label: '其他' },
+      { username: '王高田', password: '1120', label: '其他' },
+    ];
+    const context = document.querySelector('.context')
+    let htmlStr = credentials.map((item, index) => {
+      return `
+      <tr>
+      <td>${item.username}</td>
+      </td>
+        <td>${item.password}</td>
+      </td>
+    </tr>
+    <br>`}).join('')
+    document.querySelector('.context').innerHTML = htmlStr
+
+    function intext(a) {
+      let htmlStr = credentials.map((item, index) => {
+        if (item.label === a) {
+          return `
+      <tr>
+      <td>${item.username}</td>
+      </td>
+        <td>${item.password}</td>
+      </td>
+      </tr>
+      <br>`
+        }
+      }).join('')
+      document.querySelector('.context').innerHTML = htmlStr
+    }
+    intext('环创工作室')
+    $('.sel').on('change', function () {
+      var selected = $(this).children('option:selected').val()
+      console.log(selected);
+      intext(selected)
+    });
+
+  </script>
+</body>
+
+</html>
