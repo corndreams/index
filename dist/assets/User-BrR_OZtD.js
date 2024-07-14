@@ -1,0 +1,1 @@
+import{m as t}from"./el-button-BepaoXuo.js";import{a4 as o,f as a,q as r,x as c,j as n,a2 as s}from"./index-BDzHOY1e.js";const _={};function f(l,m){const e=t;return a(),r("div",null,[c(e,{type:"primary"},{default:n(()=>[s("新增")]),_:1})])}const i=o(_,[["render",f]]);export{i as default};
