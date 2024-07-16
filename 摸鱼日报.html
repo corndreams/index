@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>摸鱼日报</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    .box {
+      width: 100%;
+      height: 60px;
+      background-color: #000000;
+    }
+
+    .s {
+      display: inline-block;
+      text-align: center;
+      width: 11%;
+      height: 40px;
+      color: #ffffff;
+    }
+
+    .add {
+      color: #ffdd00;
+    }
+
+    img {
+      width: 100%;
+    }
+
+    video {
+      width: 100%;
+    }
+
+
+    @media (min-width: 560px) {
+      .r {
+        width: 390px;
+        margin: auto;
+        border: 2px solid black;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="r">
+    <div class="box">
+      <div class="s add">打工日历</div>
+      <div class="s">摸鱼日报</div>
+      <div class="s">明星八卦</div>
+      <div class="s">内涵段子</div>
+      <div class="s">新闻简报</div>
+      <div class="s">情感花园</div>
+      <div class="s">星座运势</div>
+      <div class="s">摸鱼视频</div>
+    </div>
+    <div class="x">
+      <img src="https://dayu.qqsuu.cn/moyurili/apis.php">
+    </div>
+  </div>
+  <script>
+    const btn = document.querySelectorAll(".s")
+    const inp = document.querySelector('.x')
+    const imgUrl = [
+      'https://dayu.qqsuu.cn/moyurili/apis.php',
+      "https://dayu.qqsuu.cn/moyuribao/apis.php",
+      'https://dayu.qqsuu.cn/mingxingbagua/apis.php',
+      "https://dayu.qqsuu.cn/neihanduanzi/apis.php",
+      "https://dayu.qqsuu.cn/weiyujianbao/apis.php",
+      "https://dayu.qqsuu.cn/qingganhuayuan/apis.php",
+      "https://dayu.qqsuu.cn/xingzuoyunshi/apis.php"
+    ]
+
+    for (let i = 0; i < btn.length; i++) {
+      btn[i].addEventListener('click', function () {
+        if (i == 7) {
+          inp.innerHTML = '<video src="https://dayu.qqsuu.cn/moyuribaoshipin/apis.php" alt="" controls="0"></video>'
+        } else {
+          inp.innerHTML = `<img src=${imgUrl[i]}>`
+        }
+        for (ix = 0; ix < btn.length; ix++) {
+          btn[ix].classList.remove('add')
+        }
+        this.classList.add('add')
+      })
+    }
+  </script>
+</body>
+
+</html>
