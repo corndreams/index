@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body {
+      margin: auto;
+      padding: 0;
+    }
+
+    .div {
+      width: 100%;
+      max-width: 430px;
+      height: 48px;
+      padding: 0, 100px;
+      background-color: black;
+    }
+
+    input {
+      width: 78%;
+      height: 40px;
+    }
+
+    button {
+      width: 20%;
+      height: 44px;
+    }
+
+    .music {
+      display: flex;
+      width: 390px;
+      height: 80px;
+      padding: 10px;
+      border-radius: 20px;
+      background-color: #4ab4ff;
+      margin: auto;
+    }
+
+    audio {
+      margin-left: 5px;
+      position: relative;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    img {
+      width: 80px;
+      border-radius: 50%;
+      animation: rotate 6s linear infinite;
+    }
+
+    @keyframes rotate {
+      0% {
+        transform: rotateZ(0deg);
+        /*从0度开始*/
+      }
+
+      100% {
+        transform: rotateZ(360deg);
+        /*360度结束*/
+      }
+    }
+
+    h2 {
+      text-align: center;
+    }
+
+    p {
+      text-align: center;
+    }
+
+    .a {
+      width: 100%;
+    }
+
+    .a:hover {
+      color: #0073de !important;
+    }
+
+    .hid {
+      width: 100%;
+      max-width: 430px;
+      height: 30px;
+      line-height: 30px;
+      background-color: #93fffd;
+      text-align: center;
+    }
+
+    table {
+      width: 100%;
+      max-width: 430px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="div">
+    <input value="歌单搜索"><button class="btn">搜索</button>
+  </div>
+  <br>
+  <div class="hid">搜索结果隐藏</div>
+  <table></table>
+  <h2></h2>
+  <p></p>
+  <br>
+  <div class="music"><img src="" alt=""><audio src="" controls="controls"></audio></div>
+  <script src="2/lib/jquery-3.6.0.js"></script>
+  <script>
+    const audio = document.querySelector('audio')
+    const h2 = document.querySelector('h2')
+    const p = document.querySelector('p')
+    const btn = document.querySelector('.btn')
+    const hid = document.querySelector('.hid')
+    const input = document.querySelector('input')
+    const table = document.querySelector('table')
+    const img = document.querySelector('img')
+    let id = 'collection_3_1157300490_436_0'
+    audio.loop = false;
+    let hidden = 1
+    hid.addEventListener('click', () => {
+      if (hidden === 1) {
+        hidden = 0
+        table.style.display = 'none'
+      } else {
+        hidden = 1
+        table.style.display = 'block'
+      }
+    })
+    const qx = (msg) => {
+      $.ajax({
+        url: `https://www.hhlqilongzhu.cn/api/dg_kglist.php?type=search&msg=${msg}`,
+        // url: `https://www.hhlqilongzhu.cn/api/dg_kglist.php?type=search&msg=热歌`,
+        type: 'get',
+      }).then(res => {
+        console.log(res);
+        let list = res.data
+        const htmlStr = list.map((item, index) => {
+          return `<tr>
+      <td class='a'>${item.title}</td>
+    </tr>`
+        }).join('')
+        table.innerHTML = htmlStr
+        let a = document.querySelectorAll('.a')
+        for (let i = 0; i < a.length; i++) {
+          a[i].addEventListener('click', function () {
+            id = list[i].id
+            console.log(id);
+            music(id)
+          })
+        }
+      })
+    }
+    // qx()
+    const music = (id) => {
+      console.log(id);
+      $.ajax({
+        url: `https://www.hhlqilongzhu.cn/api/dg_kglist.php?id=${id}`,
+        type: 'get',
+      }).then(res => {
+        console.log(res);
+        h2.innerHTML = res.title
+        p.innerHTML = `歌手：${res.singer}`
+        img.src = res.song_cover
+        audio.src = res.song_url
+        audio.play();
+      })
+    }
+    audio.addEventListener('ended', function () {
+      music(id)
+    }, false);
+    music(id)
+  </script>
+</body>
+
+</html>
