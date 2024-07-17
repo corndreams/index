@@ -64,7 +64,7 @@
       }
     }
 
-    h2 {
+    h3 {
       text-align: center;
     }
 
@@ -93,31 +93,38 @@
       width: 100%;
       max-width: 430px;
     }
+
+    .box {
+      margin: auto;
+      display: inline-block;
+    }
   </style>
 </head>
 
 <body>
-  <div class="div">
-    <input value="歌单搜索"><button class="btn">搜索</button>
+  <div class="box">
+    <div class="div">
+      <input value="歌单搜索"><button class="btn">搜索</button>
+    </div>
+    <br>
+    <div class="hid">搜索结果隐藏</div>
+    <table></table>
+    <h3></h3>
+    <p></p>
+    <br>
+    <div class="music"><img src="" alt=""><audio src="" controls="controls"></audio></div>
   </div>
-  <br>
-  <div class="hid">搜索结果隐藏</div>
-  <table></table>
-  <h2></h2>
-  <p></p>
-  <br>
-  <div class="music"><img src="" alt=""><audio src="" controls="controls"></audio></div>
   <script src="2/lib/jquery-3.6.0.js"></script>
   <script>
     const audio = document.querySelector('audio')
-    const h2 = document.querySelector('h2')
+    const h2 = document.querySelector('h3')
     const p = document.querySelector('p')
     const btn = document.querySelector('.btn')
     const hid = document.querySelector('.hid')
     const input = document.querySelector('input')
     const table = document.querySelector('table')
     const img = document.querySelector('img')
-    let id = 'collection_3_1157300490_436_0'
+    let id = 'collection_3_1133718572_31_0'
     audio.loop = false;
     let hidden = 1
     hid.addEventListener('click', () => {
@@ -129,10 +136,14 @@
         table.style.display = 'block'
       }
     })
+    btn.addEventListener('click', () => {
+      let msg = input.value
+      qx(msg)
+    })
     const qx = (msg) => {
       $.ajax({
         url: `https://www.hhlqilongzhu.cn/api/dg_kglist.php?type=search&msg=${msg}`,
-        // url: `https://www.hhlqilongzhu.cn/api/dg_kglist.php?type=search&msg=热歌`,
+        // url: `https://www.hhlqilongzhu.cn/api/dg_kglist.php?type=search&msg=2024`,
         type: 'get',
       }).then(res => {
         console.log(res);
@@ -153,7 +164,6 @@
         }
       })
     }
-    // qx()
     const music = (id) => {
       console.log(id);
       $.ajax({
