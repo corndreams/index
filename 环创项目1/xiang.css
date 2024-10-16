@@ -1,0 +1,103 @@
+.ni {
+    float: right;
+}
+
+.n1 {
+    width: 100%;
+    display: none;
+    position: absolute;
+    left: 0;
+    z-index: 9999;
+}
+
+.ntop {
+    width: 100%;
+    height: 40px;
+    background-color: rgb(75, 75, 75, 0.3);
+}
+
+.noc {
+    background-color: rgb(255, 193, 200);
+    height: 2000px;
+}
+
+.nbtn {
+    width: 30px;
+    height: 30px;
+    border: 0;
+    float: right;
+    margin-right: 30px;
+}
+
+.l_ {
+    width: 100%;
+    background-color: white;
+    display: none;
+}
+
+.noc .di {
+    font-size: 25px;
+}
+
+.dt {
+    border-bottom: 2px solid rgb(223, 214, 216, 0.5);
+}
+
+.l_ li {
+    width: 100%;
+    background-color: white;
+    height: 40px;
+    line-height: 40px;
+    font-size: 20px;
+    border-bottom: 2px solid whitesmoke;
+    color: #3d3d3d;
+}
+
+.l_ li:hover {
+    background-color: rgb(216, 216, 216);
+    color: red !important;
+}
+
+.n2 {
+    width: 80%;
+    margin-left: 10%;
+    margin-top: 80px;
+    height: 300px;
+    background-color: rgb(255, 255, 255, 0.9);
+    display: none;
+    position: fixed;
+    left: 0;
+    z-index: 9999;
+}
+
+.nbtn2 {
+    width: 30px;
+    height: 30px;
+    border: 0;
+    float: right;
+    margin-right: 10px;
+    font-size: 25px;
+}
+
+.rc {
+    width: 80%;
+    margin-top: 20%;
+    margin-left: 10%;
+}
+
+.rc .r2 {
+    width: 220px;
+    height: 30px;
+}
+
+.rc .r1 {
+    width: 30px;
+    height: 30px;
+}
+
+.rcbtn {
+    height: 30px;
+    color: white;
+    background-color: red;
+    border: 2px solid rgb(255, 253, 218);
+}
