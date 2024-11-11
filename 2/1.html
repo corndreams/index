@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script src="lib/jquery-3.6.0.js"></script>
+  <script>
+    $('head meta')[0].setAttribute('content', 'upgrade-insecure-requests');
+    $('head meta')[0].setAttribute('http-equiv', 'Content-Security-Policy');
+    $('head meta')[1].setAttribute('content', 'upgrade-insecure-requests');
+    $('head meta')[1].setAttribute('http-equiv', 'Content-Security-Policy');
+
+    $.ajax({
+      url: `https://apifox.com/api/v1/user`,
+      type: 'get',
+      dataType: "jsonp",
+      jsonp: "callback",
+      jsonpCallback: "f",
+    }).then(res => {
+      console.log(res);
+    })
+    // const xhr = new XMLHttpRequest();
+    // const url = 'https://apifox.com/home/category/head';
+    // xhr.setRequestHeader('X-Custom-Header', 'value');
+    // xhr.open('GET', url);
+    // xhr.send();
+    // var myHeaders = new Headers();
+    // myHeaders.append("User-Agent", "Apifox/1.0.0 (https://apifox.com)");
+
+    // var requestOptions = {
+    //   method: 'GET',
+    //   headers: myHeaders,
+    //   redirect: 'follow'
+    // };
+
+    // fetch("/home/hot", requestOptions)
+    //   .then(response => response.text())
+    //   .then(result => console.log(result))
+    //   .catch(error => console.log('error', error));
+    // router.options('/api/*', (req, res) => {
+    //   res.header('Access-Control-Allow-Credentials', true)
+    //   res.header('Access-Control-Allow-Origin', req.headers.origin)
+    //   res.header('Access-Control-Allow-Methods', 'GET, PUT, POST, PATCH, DELETE')
+    //   res.header(
+    //     'Access-Control-Allow-Headers',
+    //     'Origin, X-Requested-With, Content-Type, Accept, Credentials'
+    //   )
+    //   res.send('ok')
+    // })
+    // var settings = {
+    //   "url": "/home/category/head",
+    //   "method": "GET",
+    //   "timeout": 0,
+    //   "headers": {
+    //     "User-Agent": "Apifox/1.0.0 (https://apifox.com)"
+    //   },
+    // };
+
+    // $.ajax(settings).done(function (response) {
+    //   console.log(response);
+    // });
+    // $.ajax({
+    //   url: `https://apifox.com/api-67132164/home/category/head`,
+    //   type: 'get',
+    // }).then(res => {
+    //   console.log(res);
+    // })
+  </script>
+</body>
+
+</html>
